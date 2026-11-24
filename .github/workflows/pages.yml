@@ -1,0 +1,29 @@
+name: Deploy Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: uqbar-project/wollok-web-tools@main
+
+      - name: Arreglar el nombre del programa principal
+        run: sed -i "s|\.slice(0, -5)|.slice(0, -5).split('/').join('.')|" game-runner.js
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: .
+
+      - name: Deploy
+        uses: actions/deploy-pages@v4

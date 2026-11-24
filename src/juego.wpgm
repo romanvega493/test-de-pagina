@@ -1,0 +1,22 @@
+import wollok.game.*
+import pantallas.*
+import jugador.*
+import tiempo.*
+import objetosAColisionar.*
+
+
+
+program juego {
+    game.title("Corredor Del Laberinto")
+    game.cellSize(32)
+    game.width(33)
+    game.height(25)
+
+    
+
+   
+    inicio.iniciar()
+    game.start()
+}
+
+
